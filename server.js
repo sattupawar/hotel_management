@@ -7,7 +7,7 @@ const bodyParser = require("body-parser");
 // add middle ware to extract data from client body and it helps to convert extract body data format to javascript ojects
 app.use(bodyParser.json());
 app.use(express.json());
-
+require("dotenv").config()
 // ---------------------------------------------------
 
 // Person model to interact with database :
@@ -19,6 +19,7 @@ app.use("/person", personRoutes);
 
 // ---------------------------------------------------
 // port :
-app.listen(3000, () => {
+const PORT=process.env.PORT 
+app.listen(PORT, () => {
   console.log("listening on port 3000");
 });
