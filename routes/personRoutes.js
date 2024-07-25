@@ -47,36 +47,39 @@ router.put("/:id", async (req, res) => {
     }
     res.status(200).json(replace);
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(500).json({ error: "Internal server error" });
   }
 });
 
-router.get("/:id",async(req,res)=>{
-    try {
-        const userId=req.params.id;
-        const result=await Person.findById(userId);
-
-        if(!result){
-            res.status(404).send("user not found");
-        }
-
-        res.status(200).json(result);
-    } catch (error) {
-        console.log(error)
-        res.status(500).json({error:'Internal server error'})
-    }
-})
-
-router.get("/:work", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
-    const workType = req.params.work;
+    const userId = req.params.id;
+    
+    const result = await Person.findById(userId);
+
+    if (!result) {
+      res.status(404).send("user not found");
+    }
+
+    res.status(200).json(result);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.get("/work/:type", async (req, res) => {
+  try {
+    const workType = req.params.type;
     if (workType == "chef" || workType == "manager" || workType == "waiter") {
       const data = await Person.find({ work: workType });
       res.status(200).json(data);
     }
+    console.log(workType);
     res.status(500).json({ workType: " not found" });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error: "Internal server error" });
   }
 });

@@ -7,10 +7,10 @@ require("dotenv").config();
 // we need to pass connection string :
 
 // copy the following url from mongodb left side right click copy connection string
-// const mongoURL_local = process.env.MONGODB_URL_LOCAL;
+const mongoURL = process.env.MONGODB_URL_LOCAL;
 // now time connect mongoose to mongodb
 
-const mongoURL = process.env.MONGODB_URL;
+// const mongoURL = process.env.MONGODB_URL;
 mongoose.connect(mongoURL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
